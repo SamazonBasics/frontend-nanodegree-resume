@@ -65,3 +65,35 @@ cleanHTML = cleanWords.join("&gt;"); //Submitted with .join(" ");
 
 console.log(cleanHTML);*/
 
+/* Quiz: Dot Notation vs. Bracket Notation */
+var weirdObject = {
+    "property": "Time for an astronomy lesson!",
+    "property1": "Cameron's minor in college was astronomy",
+    "property-2": "The 4 Galilean largest moons of Jupiter are:",
+    "property 3": "Io, Ganymede, Callisto, Europa",
+    "property$": "Saturn's moon Enceladus has liquid water ocean under its icy surface",
+    " property": "The Sun contains 99.87% of the mass of the entire solar system",
+    "property()": "There are 5 dwarf planets in our solar system:",
+    "property[]": "Pluto, Ceres, Eris, Haumea, Makemake",
+    "8property": "Mars has two tiny moons: Phobos and Deimos"
+};
+
+var q;
+q = weirdObject.property;
+q = weirdObject["property"]; // 0
+q = weirdObject.property1;
+q = weirdObject["property1"];  // 1
+/*q = weirdObject.property-2;*/
+q = weirdObject["property-2"];  // 2
+/*q = weirdObject.property 3;*/
+q = weirdObject["property 3"];  // 3
+q = weirdObject.property$;
+q = weirdObject["property$"];   // 4
+/*q = weirdObject. property;*/
+q = weirdObject[" property"];   // 5
+/*q = weirdObject.property();*/
+q = weirdObject["property()"];  // 6
+/*q = weirdObject.property[];*/
+q = weirdObject["property[]"];  // 7
+/*q = weirdObject.8property;*/
+q = weirdObject["8property"];   // 8
