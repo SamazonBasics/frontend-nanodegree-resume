@@ -52,3 +52,16 @@ var formattedRole = HTMLheaderRole.replace("%data%", "King of All That I Survey"
 
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
+
+/* Quiz: Protecting the Resume submitted solution: */
+/*var shadyHTML = "String < with > tag brackets << all >>> over it.";
+var processingHTML = "";
+var cleanHTML = "";
+var cleanWords = [];
+cleanWords = shadyHTML.split("<");
+processingHTML = cleanWords.join("&lt;");  //Submitted with .join(" ");
+cleanWords = processingHTML.split(">");
+cleanHTML = cleanWords.join("&gt;"); //Submitted with .join(" ");
+
+console.log(cleanHTML);*/
+
