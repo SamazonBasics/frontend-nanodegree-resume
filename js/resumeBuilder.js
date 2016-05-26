@@ -32,8 +32,19 @@ var education = {
     ]
 };
 
-var project{
-    
+var project = {
+    "projects": [
+        {
+            "title": "Peach Pancake",
+            "dates": "2002",
+            "description": "Battlebot prototype. A differential drive platform, using w=(-/+)B+cos(thetaErr) wheelspeed modulation about a baseline speed, B.  It was named for a friend's cat."
+        },
+        {
+            "title": "Brix Box",
+            "dates": "2016",
+            "description": "Configure a Linux system on a compact desktop computer for headless operation, providing remote access to graphical logon sessions, for running multiple simultaneous virtual machines."
+        }
+    ]
 };
 
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
