@@ -174,3 +174,234 @@ projects.display();
 $("#main").append(internationalizeButton);
 
 $("#mapDiv").append(googleMap);
+
+/* BEGIN code for Challenge Problem 1.  
+return a string representing whether x is >, < or = y. For example:
+    var rel = getRelationship(2, 3);
+    console.log(rel); // <
+If one or both of the values aren't numbers, your function should output:
+
+"Can't compare relationships because [this value] and [that value] [is]/[are] not [a] number[s]."
+where [this value] and [that value] are replaced with the non-numerical values. The sentence should be grammatically correct by outputting either is or are and pluralizing number if necessary. */
+
+function getRelationship(x, y) {
+    //Err txt: "Can't compare relationships because [this value] and [that value] [is]/[are] not [a] number[s]."
+    //Test whether x and y are defined.
+    var xTxt=x, yTxt=y, xState="OK", yState="OK", isAre=" is ", numbers=" a number", result="";
+
+    if ( (undefined !== x) && (undefined !== y) ) 
+    {
+        if($.isNumeric(x) && $.isNumeric(y))
+        {
+            if(x>y){result = ">";}
+            else if(x<y){result = "<";}
+            else if(x===y){result = "=";}
+            return result;
+        }
+        else{ //x and y not both numeric.
+            if(!$.isNumeric(x)){xState = "NonNumeric"}
+            if(!$.isNumeric(y)){yState = "NonNumeric"}
+        }
+    }
+    else{
+        if(undefined === x){ xTxt = "undefined"; xState=xTxt;}
+        if(undefined === y){ yTxt = "undefined"; yState=yTxt;}
+    }
+    if( (xState != "OK") && (yState !="OK") ){
+        isAre = " are "; numbers=" numbers";
+        result = "Can't compare relationships because " +xTxt+ " and " +yTxt+isAre+"not"+numbers+".";
+    }
+    else if(xState != "OK"){
+        result = "Can't compare relationships because " +xTxt+ " is not"+numbers+".";
+    }
+    else if(yState != "OK"){
+        result = "Can't compare relationships because " +yTxt+ " is not"+numbers+".";
+    }
+    else{result = "Somethin' ain't right...";}
+    return result;
+}
+
+// Try logging these functions to test your code!
+/*  DISABLING TEST OUTPUT
+console.log(getRelationship(1,4));
+console.log(getRelationship(1,1));
+console.log(getRelationship("that",2));
+console.log(getRelationship("this"," something else"));
+console.log(getRelationship(3));
+console.log(getRelationship("hi"));
+console.log(getRelationship(NaN));
+console.log(getRelationship(NaN, undefined)); */
+/* END code for Challenge Problem 1. */
+
+/* BEGIN code for Challenge Problem 2.  */
+
+var moonWalkers = [
+  "Neil Armstrong",
+  "Buzz Aldrin",
+  "Pete Conrad",
+  "Alan Bean",
+  "Alan Shepard",
+  "Edgar Mitchell",
+  "David Scott",
+  "James Irwin",
+  "John Young",
+  "Charles Duke",
+  "Eugene Cernan",
+  "Harrison Schmitt"
+];
+
+function flipNames(names){
+    for(var a in names){
+        var tmpName = [];
+        tmpName = names[a].split(" ");
+        names[a] = tmpName[1]+" "+tmpName[0];
+    }
+    return names;
+}
+
+function alphabetizer(names) {
+    names = flipNames(names);
+    names.sort();
+    names = flipNames(names);
+    return names;
+}
+
+// Try logging your results to test your code!
+/* DISABLING DISPLAY console.log(alphabetizer(moonWalkers)); */
+
+/* END code for Challenge Problem 2.  */
+
+/* BEGIN code for Challenge Problem 3. */
+// Iterate through the localizedRuleNames in ruleResults and 
+// return an array of their strings.
+function ruleList(results) {
+    // Your code goes here!
+    var ruleNames = [];
+    for(r in results.formattedResults.ruleResults){
+        ruleNames.push(r);
+    }
+    return ruleNames;
+}
+
+// Iterate through pageStats in the psiResults object and 
+// return the total number of bytes to load the website.
+function totalBytes(results) {
+    var bytesSum = 0;
+    var byteNumber = 0;
+    for(s in results.pageStats){
+        byteNumber = parseInt(results.pageStats[s]);
+        if($.isNumeric(byteNumber)){
+            bytesSum += byteNumber;
+            byteNumber = 0;
+        }
+    }
+    return bytesSum;
+}
+
+// Below, you'll find a sample PS Insights JSON
+// and two console.log statements to help you test your code!
+
+psinsights = {
+ "kind": "pagespeedonline#result",
+ "id": "/speed/pagespeed",
+ "responseCode": 200,
+ "title": "PageSpeed Home",
+ "score": 90,
+ "pageStats": {
+  "numberResources": 22,
+  "numberHosts": 7,
+  "totalRequestBytes": "2761",
+  "numberStaticResources": 16,
+  "htmlResponseBytes": "91981",
+  "cssResponseBytes": "37728",
+  "imageResponseBytes": "13909",
+  "javascriptResponseBytes": "247214",
+  "otherResponseBytes": "8804",
+  "numberJsResources": 6,
+  "numberCssResources": 2
+ },
+ "formattedResults": {
+  "locale": "en_US",
+  "ruleResults": {
+    "AvoidBadRequests": {
+      "localizedRuleName": "Avoid bad requests",
+      "ruleImpact": 0.0
+    },
+    "MinifyJavaScript": {
+      "localizedRuleName": "Minify JavaScript",
+      "ruleImpact": 0.1417,
+      "urlBlocks": [
+      {
+        "header": {
+       "format": "Minifying the following JavaScript resources could reduce their size by $1 ($2% reduction).",
+       "args": [
+        {
+         "type": "BYTES",
+         "value": "1.3KiB"
+        },
+        {
+         "type": "INT_LITERAL",
+         "value": "0"
+        }
+       ]
+        },
+        "urls": [
+        {
+          "result": {
+         "format": "Minifying $1 could save $2 ($3% reduction).",
+         "args": [
+          {
+           "type": "URL",
+           "value": "http://code.google.com/js/codesite_tail.pack.04102009.js"
+          },
+          {
+           "type": "BYTES",
+           "value": "717B"
+          },
+          {
+           "type": "INT_LITERAL",
+           "value": "1"
+          }
+         ]
+        }
+       },
+       {
+        "result": {
+         "format": "Minifying $1 could save $2 ($3% reduction).",
+         "args": [
+          {
+           "type": "URL",
+           "value": "http://www.gmodules.com/ig/proxy?url\u003dhttp%3A%2F%2Fjqueryjs.googlecode.com%2Ffiles%2Fjquery-1.2.6.min.js"
+          },
+          {
+           "type": "BYTES",
+           "value": "258B"
+          },
+          {
+           "type": "INT_LITERAL",
+           "value": "0"
+          }
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "SpriteImages": {
+    "localizedRuleName": "Combine images into CSS sprites",
+    "ruleImpact": 0.0
+   }
+  }
+ },
+ "version": {
+  "major": 1,
+  "minor": 11
+ }
+};
+
+// Try logging the outputs below to test your code!
+/*   DISABLING OUTPUT.
+console.log(ruleList(psinsights));
+console.log(totalBytes(psinsights));  */
+/* END code for Challenge Problem 3. */
